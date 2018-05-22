@@ -1,12 +1,16 @@
+
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import {
-  HttpClient, HttpRequest, HttpResponse,
+  HttpClient, HttpRequest, HttpResponse,HttpErrorResponse,
   HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
+// import 'rxjs/add/operator/map'
+// import 'rxjs/add/operator/catch'
+// import { _throw } from 'rxjs/observable/throw';
 import { filter } from 'rxjs/operators/filter';
 @Injectable()
 class AccountService extends BaseService {
@@ -52,13 +56,14 @@ class AccountService extends BaseService {
   //   );
   // }
 
-  login(params: any): Observable<HttpResponse<void>> {
+  login(params: any): Observable<any> {
     var __headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     var __body = {
       EmailAddress: params.username,
-      Password: params.password,
+      //Password:btoa(params.password),
+      Password:(params.password),
 
     };
    // const formBody = Object.keys(__body).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(__body[key])).join('&');
@@ -69,6 +74,28 @@ class AccountService extends BaseService {
         headers: __headers
 
       });
+    //   return this.http.request<any>(req)
+    //  .map((res:any) =>{
+    //    if(res instanceof HttpResponse)
+    //    return res;
+    //   })
+    //  .catch((error:any) =>{
+    //    var res = new HttpResponse();
+    //    if(error instanceof HttpErrorResponse)
+    //    {
+    //    return res.clone({
+    //    body: error
+    //     }) as HttpResponse < any > ; 
+    //   }
+    //   else {
+    //     return res.clone({
+    //       body: 'error occured'
+    //        }) as HttpResponse < any > ; 
+    //   }
+      
+    //  });
+
+   
 
     return this.http.request < any > (req).pipe(
       filter(_r => _r instanceof HttpResponse),

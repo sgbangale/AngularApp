@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   submitLogin() {
     if (this.formGroup.valid) {
       this.account.login(this.formGroup.value).subscribe(data => {
+        console.log(data);
       //  this.loginData.emit(data);
         this.router.navigate(['/home']);
 

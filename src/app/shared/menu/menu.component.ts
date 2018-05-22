@@ -16,29 +16,23 @@ import {
 })
 export class MenuComponent implements OnInit {
 
-  private storage: any;
-  private items: MenuItem[];
+  storage: any;
+  items: MenuItem[];
   showLogin: boolean = false;
   constructor(private router: Router) {
-
-    
-
-    //localStorage.setItem('MenuItem', btoa(JSON.stringify(MenuDataAPI)));
-
-
     this.showLogin = false;
 
-    // var data = localStorage.getItem('.expires');
-    // if (data != null) {
-    //   var expDate = new Date(localStorage.getItem('.expires'));
-    //   var now = new Date();
-    //   this.showLogin = ((+now - +expDate) > 0);
-    //   if( this.showLogin)
-    //   router.navigate(['/logout']);
-    // } else {
-    //   this.showLogin = true;
-    //   router.navigate(['/logout']);
-    // }
+    var data = localStorage.getItem('exp');
+    if (data != null) {
+      var expDate = new Date(Number.parseInt(data)*1000);
+      var now = new Date();
+      this.showLogin = ((+now - +expDate) > 0);
+      if( this.showLogin)
+      router.navigate(['/logout']);
+    } else {
+      this.showLogin = true;
+      router.navigate(['/logout']);
+    }
   }
 
   ngOnInit() {
