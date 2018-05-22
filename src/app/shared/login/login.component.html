@@ -1,0 +1,45 @@
+<!-- 
+<p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+<p-blockUI [blocked]="true"></p-blockUI> -->
+
+<form [formGroup]="formGroup" (ngSubmit) ="submitLogin()">
+    <p-panel header="Login Window">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Username *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="username" placeholder="Email" />
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!formGroup.controls['username'].valid&&formGroup.controls['username'].dirty">
+                        <i class="fa fa-close"></i>
+                        Username is required.
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Password *:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="password" formControlName="password" placeholder="Password" />
+                </div>
+                <div class="ui-grid-col-4">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!formGroup.controls['password'].valid&&formGroup.controls['password'].dirty">
+                        <i class="fa fa-close"></i>
+                        <span *ngIf="formGroup.controls['password'].errors['required']">Password is required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-6">
+                    <button pButton type="submit" label="Submit" [disabled]="!formGroup.valid"></button>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+        </div>
+    </p-panel>
+</form>

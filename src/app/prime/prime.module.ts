@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as prime  from 'primeng/primeng';
+import {TableModule} from 'primeng/table';
 @NgModule({
+  providers:
+  [
+
+    
+  ],
   imports: [
 CommonModule
+
 ,prime.AccordionModule
 ,prime.AutoCompleteModule
 ,prime.BlockUIModule
@@ -24,6 +31,7 @@ CommonModule
 ,prime.DataListModule
 ,prime.DataScrollerModule
 ,prime.DataTableModule
+,TableModule
 ,prime.DeferModule
 ,prime.DialogModule
 ,prime.DragDropModule
@@ -97,12 +105,13 @@ prime.AccordionModule
 ,prime.ChipsModule
 ,prime.CodeHighlighterModule
 ,prime.ColorPickerModule
-,prime.ConfirmDialogModule
+,prime.ConfirmDialogModule                          
 ,prime.ContextMenuModule
 ,prime.DataGridModule
 ,prime.DataListModule
 ,prime.DataScrollerModule
 ,prime.DataTableModule
+,TableModule
 ,prime.DeferModule
 ,prime.DialogModule
 ,prime.DragDropModule

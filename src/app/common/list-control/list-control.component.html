@@ -1,0 +1,38 @@
+<p-panel>
+    <p-table [columns]="DisplayColumns" [value]="Items" [paginator]="true" [rows]="defaultPageSize" [(selection)]="selectedItems" dataKey="Id">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th style="width: 2.25em">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <td>
+                        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                    </td>
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+                </tr>
+            </ng-template>
+            <!-- <ng-template pTemplate="summary">
+                <ul>
+                    <li *ngFor="let car of selectedCars3" style="text-align: left">
+                        {{car|json}}
+                    </li>
+                </ul>
+            </ng-template> -->
+            <ng-template pTemplate="summary" let-rowData>
+                Actions
+                      <div  style="text-align:center">
+                          <button *ngFor="let action of ActionItems" [disabled]="disableAction(action?.MultiSelect,action?.ActionCode)" type="button" pButton icon="action?.Icon" (click)="actionCallback(action?.ActionCode)"label="{{action?.ActionName}}"></button>
+                      </div>                       
+                  </ng-template>
+        </p-table>
+</p-panel>
