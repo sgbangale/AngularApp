@@ -23,6 +23,7 @@ import {
   MessageService
 } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
+import { UiBlockService } from '../ui-block.service';
 
 @Component({
   selector: 'app-login',
@@ -38,15 +39,25 @@ export class LoginComponent implements OnInit {
     private account: AccountService, 
     private fb: FormBuilder, 
     private messageService: MessageService,
-    private router : Router
+    private router : Router,
+    private uiService : UiBlockService
   ) {}
   submitLogin() {
-    if (this.formGroup.valid) {
+    if (this.formGroup.valid) {      
+      this.uiService.showBlockUI();
+      
       this.account.login(this.formGroup.value).subscribe(data => {
-        console.log(data);
-      //  this.loginData.emit(data);
-        this.router.navigate(['/home']);
-
+        this.uiService.hideBlockUI();
+        if(data.body.success == false)
+        {
+          localStorage.clear();
+          this.messageService.add({severity:'error', summary:'Account Details', detail:data.body.message});
+        }
+        else
+        {
+          //  this.loginData.emit(data);
+          this.router.navigate(['/home']);
+        }
       });
     }
   }

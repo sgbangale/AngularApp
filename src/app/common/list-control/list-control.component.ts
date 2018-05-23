@@ -31,7 +31,7 @@ export class ListControlComponent implements OnInit, AfterViewInit {
 
   disableAction(isMultiSelect, actioncode) {
 
-    if (actioncode === "ADD") {return false;} else {
+    if (actioncode.indexOf("__add") != -1) {return false;} else {
       //selected item is zero => disable all action items
       if (this.selectedItems != undefined && this.selectedItems['length'] > 0) {
         //if selected item is one => disable controls whoes multiselect is false
@@ -65,7 +65,7 @@ export class ListControlComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     if (!this.DisplayColumns) {
       this.DisplayColumns = Object.keys(this.Items[0])
-        .filter(x => x.indexOf("Id") == -1)
+        .filter(x => x.indexOf("_id") == -1)
         .map(key => '{ "field" :"' + key + '","header":"' + key.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1") + '"}')
         .map(jsonRaw => JSON.parse(jsonRaw));
     }

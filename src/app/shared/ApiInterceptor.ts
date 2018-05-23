@@ -6,10 +6,11 @@ import { Observable } from "rxjs";
 export class ApiInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Apply the headers
+    if(req.url.indexOf('/account/token') == -1)
     req = req.clone({
-      // setHeaders: {
-      //   'Authorization':  localStorage.getItem('token_type') + ' ' + localStorage.getItem('access_token')
-      // }
+      setHeaders: {
+        'token':  localStorage.getItem('token')
+      }
     });
     return next.handle(req);
   }

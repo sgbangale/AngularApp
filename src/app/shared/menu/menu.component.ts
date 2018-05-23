@@ -1,6 +1,8 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  EventEmitter,
+  Output
 } from '@angular/core';
 import {
   MenuItem
@@ -8,6 +10,7 @@ import {
 import {
   Router
 } from '@angular/router';
+import { UiBlockService } from '../ui-block.service';
 
 @Component({
   selector: 'app-menu',
@@ -19,7 +22,7 @@ export class MenuComponent implements OnInit {
   storage: any;
   items: MenuItem[];
   showLogin: boolean = false;
-  constructor(private router: Router) {
+  constructor(private router: Router,private blockui :UiBlockService) {    
     this.showLogin = false;
 
     var data = localStorage.getItem('exp');
@@ -39,5 +42,4 @@ export class MenuComponent implements OnInit {
     this.items = JSON.parse(atob(localStorage.getItem('MenuItem')));
     this.storage= localStorage;
   }
-
 }

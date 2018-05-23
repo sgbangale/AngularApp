@@ -21,6 +21,7 @@ import {
   AuthGuard
 } from './shared/auth-guard.guard';
 import { LogoutComponent } from './shared/logout/logout.component';
+import { RequestComponent } from './shared/request/request.component';
 
 const routes: Routes = [
   {
@@ -32,8 +33,17 @@ const routes: Routes = [
   {
     path: 'home',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
-    pathMatch : 'full'
+    canActivate: [AuthGuard],    
+    children: [
+      {
+        path: 'requests',
+        component: RequestComponent
+      },
+      {
+        path: 'users',
+        component:UserListComponent
+      }
+    ]
   },
   {
     path: 'login',

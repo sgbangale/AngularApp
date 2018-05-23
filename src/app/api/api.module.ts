@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration } from './api-configuration';
 
 import { AccountService } from './services/account.service';
+import { RequestService } from './services/request.service';
 
 /**
  * Module that provides instances for all API services
@@ -17,7 +18,8 @@ import { AccountService } from './services/account.service';
   declarations: [],
   providers: [
     ApiConfiguration,
-   AccountService
+   AccountService,
+   RequestService
   ],
 })
 export class ApiModule { }

@@ -23,6 +23,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { ListControlComponent } from './common/list-control/list-control.component';
+import { UiBlockService } from './shared/ui-block.service';
+import { RequestComponent } from './shared/request/request.component';
 
 export function initApiConfiguration(config: ApiConfiguration): Function {
   return () => {
@@ -51,7 +53,8 @@ export const httpInterceptorProviders = [
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    ListControlComponent
+    ListControlComponent,
+    RequestComponent
 
   ],
   imports: [
@@ -70,7 +73,8 @@ export const httpInterceptorProviders = [
   providers: [
     INIT_API_CONFIGURATION,
     httpInterceptorProviders,
-    MessageService
+    MessageService,
+    UiBlockService
   ],
   bootstrap: [AppComponent]
 })
