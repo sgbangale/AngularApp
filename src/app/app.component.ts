@@ -14,6 +14,6 @@ import { UiBlockService } from './shared/ui-block.service';
 })
 export class AppComponent {
   
-  constructor(private uiService : UiBlockService) {    
+  constructor(public uiService : UiBlockService) {    
   }
 }

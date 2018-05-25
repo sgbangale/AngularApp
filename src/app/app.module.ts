@@ -25,6 +25,7 @@ import { LogoutComponent } from './shared/logout/logout.component';
 import { ListControlComponent } from './common/list-control/list-control.component';
 import { UiBlockService } from './shared/ui-block.service';
 import { RequestComponent } from './shared/request/request.component';
+import { EntityComponent } from './shared/entity/entity.component';
 
 export function initApiConfiguration(config: ApiConfiguration): Function {
   return () => {
@@ -54,7 +55,8 @@ export const httpInterceptorProviders = [
     FooterComponent,
     LogoutComponent,
     ListControlComponent,
-    RequestComponent
+    RequestComponent,
+    EntityComponent
 
   ],
   imports: [

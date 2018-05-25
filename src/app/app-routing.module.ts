@@ -22,6 +22,7 @@ import {
 } from './shared/auth-guard.guard';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { RequestComponent } from './shared/request/request.component';
+import { EntityComponent } from './shared/entity/entity.component';
 
 const routes: Routes = [
   {
@@ -40,8 +41,8 @@ const routes: Routes = [
         component: RequestComponent
       },
       {
-        path: 'users',
-        component:UserListComponent
+        path: 'entities',
+        component:EntityComponent
       }
     ]
   },
