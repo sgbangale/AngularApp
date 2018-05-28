@@ -1,4 +1,4 @@
-<p-panel>
+<p-panel *ngIf="!HideList">
     <p-table [columns]="DisplayColumns" [value]="Items" [paginator]="true" [rows]="defaultPageSize" [(selection)]="selectedItems" dataKey="_id">
             <ng-template pTemplate="header" let-columns>
                 <tr>

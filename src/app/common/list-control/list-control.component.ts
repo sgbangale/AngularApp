@@ -19,6 +19,7 @@ export class ListControlComponent implements OnInit, AfterViewInit {
   DisplayColumns: any[];
   @Input('ListData') Items: {};
   @Input('ActionItems') ActionItems: string[];
+  HideList :boolean = false;
   @Output('ListActions') ActionItemsEventEmitter: EventEmitter < any > ;
   selectedItems: any[];
   defaultPageSize: number

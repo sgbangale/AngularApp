@@ -1,0 +1,12 @@
+<button  type="button" pButton icon="fa fa-right" (click)="backClick()"label="back"></button>
+<pre>
+  {{data|json}}
+</pre>
+<hr/>
+<p-tabView>
+  <p-tabPanel [header]="item" *ngFor="let item of data1; let i = index" [selected]="i == 0">
+      {{item|json}}
+  </p-tabPanel>
+</p-tabView>
+
+<hr/>

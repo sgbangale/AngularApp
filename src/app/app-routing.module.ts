@@ -23,6 +23,7 @@ import {
 import { LogoutComponent } from './shared/logout/logout.component';
 import { RequestComponent } from './shared/request/request.component';
 import { EntityComponent } from './shared/entity/entity.component';
+import { DetailViewComponent } from './common/detail-view/detail-view.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'requests',
         component: RequestComponent
+      },
+      {
+        path: 'users',
+        component: UserListComponent
       },
       {
         path: 'entities',
