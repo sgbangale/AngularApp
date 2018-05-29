@@ -32,6 +32,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     pathMatch : 'full'
   },
+
+  {
+    path: 'details',
+    component: DetailViewComponent,
+    canActivate: [AuthGuard],
+    pathMatch : 'full'
+  },
   {
     path: 'home',
     component: DashboardComponent,

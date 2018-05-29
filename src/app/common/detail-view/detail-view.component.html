@@ -1,12 +1,24 @@
-<button  type="button" pButton icon="fa fa-right" (click)="backClick()"label="back"></button>
-<pre>
-  {{data|json}}
-</pre>
-<hr/>
 <p-tabView>
-  <p-tabPanel [header]="item" *ngFor="let item of data1; let i = index" [selected]="i == 0">
-      {{item|json}}
+    <p-tabPanel *ngIf="data" [header]="'general'" [selected]="true">
+
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+            <div *ngFor="let field of priFields" class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    {{ field }}:
+                </div>
+                <div class="ui-grid-col-6">
+                    {{ data["SelectedItems"][0][field] }}
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+  <p-tabPanel [header]="field" *ngFor="let field of nonPriFields; let i = index">
+      <app-list-control [GenerateColumnAutomatic]="true" [ListData]="data['SelectedItems'][0][field]" ></app-list-control>
+  </p-tabPanel>
+  <p-tabPanel [header]="field" *ngFor="let field of priArrayFields; let i = index">
+      <p-chips [(ngModel)]="data['SelectedItems'][0][field]"></p-chips>    
+  </p-tabPanel>
+  <p-tabPanel [header]="field" *ngFor="let field of objFields; let i = index">
+      <app-list-control [GenerateColumnAutomatic]="true" [ListData]="[data['SelectedItems'][0][field]]" ></app-list-control>
   </p-tabPanel>
 </p-tabView>
-
-<hr/>

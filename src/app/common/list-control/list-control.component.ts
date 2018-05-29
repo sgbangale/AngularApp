@@ -8,6 +8,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import {} from ''
+import { generate } from 'rxjs/observable/generate';
 
 @Component({
   selector: 'app-list-control',
@@ -19,6 +20,7 @@ export class ListControlComponent implements OnInit, AfterViewInit {
   DisplayColumns: any[];
   @Input('ListData') Items: {};
   @Input('ActionItems') ActionItems: string[];
+  @Input('GenerateColumnAutomatic') GenerateColumn: boolean;
   HideList :boolean = false;
   @Output('ListActions') ActionItemsEventEmitter: EventEmitter < any > ;
   selectedItems: any[];
@@ -59,12 +61,13 @@ export class ListControlComponent implements OnInit, AfterViewInit {
     })
   }
 
+  
 
   ngAfterViewInit() {
 
   }
   ngOnInit() {
-    if (!this.DisplayColumns) {
+    if (this.GenerateColumn) {
       this.DisplayColumns = Object.keys(this.Items[0])
         .filter(x => x.indexOf("_id") == -1)
         .map(key => '{ "field" :"' + key + '","header":"' + key.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1") + '"}')

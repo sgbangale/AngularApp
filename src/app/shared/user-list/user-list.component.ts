@@ -28,6 +28,7 @@ import {
 })
 export class UserListComponent implements OnInit, AfterViewInit {
 
+  public detailItem: any;
   @ViewChild(ListControlComponent) listComponent: ListControlComponent;
   @ViewChild(DetailViewComponent) detailviewComponent: DetailViewComponent;
   Items: {};
@@ -41,9 +42,13 @@ export class UserListComponent implements OnInit, AfterViewInit {
   action(data) {
       if(data.ActionCode.indexOf('__edit') != -1)
     {
-      this.listComponent.HideList= true;
+      this.detailItem = data;  
     }
-    this.detailviewComponent.data = data;
+    else
+    {
+      this.detailItem=[];
+    }
+    
   }
 
   ngAfterViewInit() {

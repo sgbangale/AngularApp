@@ -11,6 +11,7 @@ import { RequestService } from '../../api/services';
 })
 export class RequestComponent implements OnInit {
 
+  detailItem: any;
   @ViewChild(ListControlComponent) listComponent: ListControlComponent;
   Items :{};
   ActionItems:any[];
@@ -28,10 +29,11 @@ export class RequestComponent implements OnInit {
   }
 
 
-  action(data)
-  {
-    console.log(data);
-  }
+  action(data) {
+    
+    this.detailItem = data;  
+  
+}
 
   
 
