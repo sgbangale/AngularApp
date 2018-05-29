@@ -2,12 +2,18 @@
     <p-tabPanel *ngIf="data" [header]="'general'" [selected]="true">
 
         <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
-            <div *ngFor="let field of priFields" class="ui-grid-row">
-                <div class="ui-grid-col-2">
-                    {{ field }}:
+            <div *ngFor="let field of tabObject; let i =index" class="ui-grid-row">
+                <div  class="ui-grid-col-2">
+                    {{ field.col1.header }}:
                 </div>
-                <div class="ui-grid-col-6">
-                    {{ data["SelectedItems"][0][field] }}
+                <div  class="ui-grid-col-6">
+                    {{ field.col1.data }}
+                </div>
+                <div  class="ui-grid-col-2">
+                    {{ field.col2.header }}:
+                </div>
+                <div  class="ui-grid-col-6">
+                    {{ field.col2.data }}
                 </div>
             </div>
         </div>
