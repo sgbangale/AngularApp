@@ -1,3 +1,5 @@
+import {Observable} from 'rxjs/Observable';
+import "rxjs/add/observable/of";
 import {
   Injectable
 } from '@angular/core';
@@ -15,31 +17,58 @@ export class UiBlockService {
     this.blockUI = false;
   }
 
-  getView(actionCode): any {
+  getView(actionCode):Observable<any> {
 
-    var data = JSON.parse(atob(localStorage.getItem('MenuAccess')));
-    var selectedData = _.filter(data, (x) => {
-      return x.actionCode === actionCode
+    var source = Observable.create(observer => {
+
+      var data = JSON.parse(atob(localStorage.getItem('MenuAccess')));
+      var selectedData = _.filter(data, (x) => {
+        return x.actionCode === actionCode
+      });
+  
+      if (selectedData && actionCode) {
+        return Observable.of(selectedData[0].view);
+        
+      }
+      else
+      return Observable.of([]);
     });
 
-    if (selectedData) {
-      return selectedData[0].view;
-    }
-    else
-    return [];
+    return source;
   }
-
+/*
   getMenuItem(actionCode): any {
-
+console.log(actionCode);
     var data = JSON.parse(atob(localStorage.getItem('MenuAccess')));
     var selectedData = _.filter(data, (x) => {
       return x.actionCode === actionCode
     });
 
-    if (selectedData) {
+    if (selectedData && actionCode) {
       return selectedData[0].actionItems;
     }
     else
     return [];
   }
+  */
+
+ getMenuItem(actionCode):Observable<any> {
+
+  var source = Observable.create(observer => {
+
+    var data = JSON.parse(atob(localStorage.getItem('MenuAccess')));
+  
+    var selectedData = _.filter(data, (x) => {
+      return x.actionCode === actionCode
+    });
+   
+    if (selectedData && actionCode) {      
+      return Observable.of(selectedData[0].actionItems);
+    }
+    else
+    return Observable.of( []);
+  });
+
+  return source;
+}
 }

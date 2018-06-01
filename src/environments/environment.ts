@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  //rootUrl : 'http://0.0.0.0:8080',
-  rootUrl :'http://api-exp-sgbangale-node-apps.193b.starter-ca-central-1.openshiftapps.com',
+  rootUrl : 'http://localhost:3000',
+  //rootUrl :'http://api-exp-sgbangale-node-apps.193b.starter-ca-central-1.openshiftapps.com',
   defaultPageSize:5
 };
