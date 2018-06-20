@@ -1,1 +1,67 @@
-<app-entity-view [EntityName] = "'entity'"></app-entity-view>
+<!-- <app-entity-view [EntityName] = "'entity'"></app-entity-view> -->
+
+<form [formGroup]="formGroup" (ngSubmit) ="submit()">
+    <p-panel header="Create Entity">
+        <p-tabView>
+            <p-tabPanel [header]="'general'" [selected]="true">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-9">
+                        <div class="ui-g-4 ui-md-2">
+Entity Code : 
+                        </div>
+                        <div class="ui-g-8 ui-md-3">
+                            <input pInputText type="text" formControlName="entity_code" />
+                        </div>
+                        <div class="ui-g-4 ui-md-4">
+                            <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!formGroup.controls['entity_code'].valid&&formGroup.controls['entity_code'].dirty">
+                                <i class="fa fa-close"></i>
+                                Entity Code is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-9">
+                        <div class="ui-g-4 ui-md-2">
+Entity Name : 
+                        </div>
+                        <div class="ui-g-8 ui-md-3">
+                            <input pInputText type="text" formControlName="entity_name" />
+                        </div>
+                        <div class="ui-g-4 ui-md-4">
+                            <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!formGroup.controls['entity_name'].valid&&formGroup.controls['entity_name'].dirty">
+                                <i class="fa fa-close"></i>
+                                Entity Name is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-9">
+                        <div class="ui-g-4 ui-md-2">
+Entity Access : 
+                        </div>
+                        <div class="ui-g-8 ui-md-3">
+                            <p-chips formControlName="entity_access"></p-chips>
+                        </div>
+                        <div class="ui-g-4 ui-md-4">
+                            <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!formGroup.controls['entity_access'].valid&&formGroup.controls['entity_access'].dirty">
+                                <i class="fa fa-close"></i>
+                                Entity Access is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <!-- <p-tabPanel [header]="field" *ngFor="let field of nonPriFields; let i = index">
+              <app-list-control [GenerateColumnAutomatic]="true" [ListData]="data['SelectedItems'][0][field]" ></app-list-control>
+          </p-tabPanel>
+          <p-tabPanel [header]="field" *ngFor="let field of priArrayFields; let i = index">
+              <p-chips [(ngModel)]="data['SelectedItems'][0][field]"></p-chips>    
+          </p-tabPanel>
+          <p-tabPanel [header]="field" *ngFor="let field of objFields; let i = index">
+              <app-list-control [GenerateColumnAutomatic]="true" [ListData]="[data['SelectedItems'][0][field]]" ></app-list-control>
+          </p-tabPanel> -->
+        </p-tabView>
+        <button pButton type="submit" label="Submit" [disabled]="!formGroup.valid"></button>
+    </p-panel>
+
+</form>
+
+{{formGroup.value|json}}

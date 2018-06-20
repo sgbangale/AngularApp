@@ -11,7 +11,7 @@ import {
 })
 export class DetailViewComponent implements OnInit {
 
-  private data: any[];
+   data: any[];
 
   @Input("SelectedItems")
   set SelectedItems(_data: any) {
