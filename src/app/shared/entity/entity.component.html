@@ -1,13 +1,13 @@
 <!-- <app-entity-view [EntityName] = "'entity'"></app-entity-view> -->
 
-<form [formGroup]="formGroup" (ngSubmit) ="submit()">
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
     <p-panel header="Create Entity">
         <p-tabView>
             <p-tabPanel [header]="'general'" [selected]="true">
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-9">
                         <div class="ui-g-4 ui-md-2">
-Entity Code : 
+                            Entity Code :
                         </div>
                         <div class="ui-g-8 ui-md-3">
                             <input pInputText type="text" formControlName="entity_code" />
@@ -21,7 +21,7 @@ Entity Code :
                     </div>
                     <div class="ui-g-12 ui-md-9">
                         <div class="ui-g-4 ui-md-2">
-Entity Name : 
+                            Entity Name :
                         </div>
                         <div class="ui-g-8 ui-md-3">
                             <input pInputText type="text" formControlName="entity_name" />
@@ -35,7 +35,7 @@ Entity Name :
                     </div>
                     <div class="ui-g-12 ui-md-9">
                         <div class="ui-g-4 ui-md-2">
-Entity Access : 
+                            Entity Access :
                         </div>
                         <div class="ui-g-8 ui-md-3">
                             <p-chips formControlName="entity_access"></p-chips>
@@ -48,16 +48,40 @@ Entity Access :
                         </div>
                     </div>
                 </div>
+
+                <div class="ui-g-12 ui-md-9">
+                    <div class="ui-g-4 ui-md-2">
+                        Entity Active :
+                    </div>
+                    <div class="ui-g-8 ui-md-3">
+                        <p-checkbox formControlName="entity_active" binary="true"></p-checkbox>
+                    </div>
+                    <div class="ui-g-4 ui-md-4">
+                        <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!formGroup.controls['entity_active'].valid&&formGroup.controls['entity_active'].dirty">
+                            <i class="fa fa-close"></i>
+                            Entity Active is required
+                        </div>
+                    </div>
+                </div>
+
             </p-tabPanel>
-            <!-- <p-tabPanel [header]="field" *ngFor="let field of nonPriFields; let i = index">
-              <app-list-control [GenerateColumnAutomatic]="true" [ListData]="data['SelectedItems'][0][field]" ></app-list-control>
-          </p-tabPanel>
-          <p-tabPanel [header]="field" *ngFor="let field of priArrayFields; let i = index">
+            <p-tabPanel [header]="'Schema'">
+                schema goes here
+            </p-tabPanel>
+            <p-tabPanel [header]="'Entity Access'">
+                  <p-tabView>
+                <p-tabPanel [header]="field" *ngFor="let field of formGroup.value.entity_access; let i = index">
+                    {{field}} - {{i}}
+                </p-tabPanel>
+            </p-tabView>
+            </p-tabPanel>
+
+            <!-- <p-tabPanel [header]="field" *ngFor="let field of priArrayFields; let i = index">
               <p-chips [(ngModel)]="data['SelectedItems'][0][field]"></p-chips>    
           </p-tabPanel>
           <p-tabPanel [header]="field" *ngFor="let field of objFields; let i = index">
               <app-list-control [GenerateColumnAutomatic]="true" [ListData]="[data['SelectedItems'][0][field]]" ></app-list-control>
-          </p-tabPanel> -->
+          </p-tabPanel>  -->
         </p-tabView>
         <button pButton type="submit" label="Submit" [disabled]="!formGroup.valid"></button>
     </p-panel>
