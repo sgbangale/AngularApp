@@ -65,8 +65,69 @@
                 </div>
 
             </p-tabPanel>
-            <p-tabPanel [header]="'Schema'">
-                schema goes here
+            <p-tabPanel [header]="'Schema'">                
+                <p-table  [columns]="schemaColumns"  [value]="entity_schema"  [(selection)]="selectedItems" dataKey="_id">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th style="width: 2.25em">
+                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                            <td>
+                                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                            </td>
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>    
+                    <ng-template pTemplate="summary" let-rowData>
+                        <div style="text-align:left">
+                            <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+                        </div>
+                    </ng-template>               
+                </p-table>
+                <p-dialog header="Field Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="300">
+                    <div formGroupName="entity_schema_group" class="ui-g ui-fluid" *ngIf="newField">
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                                <label for="fieldCode">Field Code</label>
+                            </div>
+                            <div class="ui-g-8">
+                                <input pInputText id="fieldCode" formControlName="field_code" />
+                            </div>
+                        </div>
+                        <div class="ui-g-12">
+                            <div class="ui-g-4">
+                                <label for="fieldType">Field Type</label>
+                            </div>
+                            <div class="ui-g-8">
+                                <input pInputText id="fieldType" formControlName="field_type" />
+                            </div>
+                        </div> 
+                         <div class="ui-g-12">
+                            <div class="ui-g-4">
+                                <label for="isRequired">Is required</label>
+                            </div>
+                            <div class="ui-g-8">
+                                <input pInputText id="isRequired" formControlName="field_required" />
+                            </div>
+                        </div>
+                    </div>
+                    <p-footer>
+                        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
+                            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+                        </div>
+                    </p-footer>
+                </p-dialog>
             </p-tabPanel>
             <p-tabPanel [header]="'Entity Access'">
                   <p-tabView>

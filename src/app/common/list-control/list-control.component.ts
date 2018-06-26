@@ -17,7 +17,6 @@ import {
   AfterViewInit
 
 } from '@angular/core';
-import { } from ''
 import {
   generate
 } from 'rxjs/observable/generate';

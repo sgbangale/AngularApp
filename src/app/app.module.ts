@@ -28,6 +28,7 @@ import { RequestComponent } from './shared/request/request.component';
 import { EntityComponent } from './shared/entity/entity.component';
 import { DetailViewComponent } from './common/detail-view/detail-view.component';
 import { EntityViewComponent } from './common/entity-view/entity-view.component';
+import { GridControlComponent } from './common/grid-control/grid-control.component';
 
 export function initApiConfiguration(config: ApiConfiguration): Function {
   return () => {
@@ -60,7 +61,8 @@ export const httpInterceptorProviders = [
     RequestComponent,
     EntityComponent,
     DetailViewComponent,
-    EntityViewComponent
+    EntityViewComponent,
+    GridControlComponent
 
   ],
   imports: [
